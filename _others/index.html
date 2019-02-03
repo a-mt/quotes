@@ -30,7 +30,7 @@ index: true
     {%- if last_id != "" -%}
       <div class="table__tr table__tr_2">
         <div class="table__td">
-          <a class="link" href="{{ last_book.url | split: '/' | pop | join: '/' }}">
+          <a class="link" href="{{ last_book.url | split: '/' | pop | join: '/' | relative_url }}">
             {% if last_book.author %}{{ last_book.author }}
             {% else %}{{ last_book.title }}{% endif %}
           </a>
@@ -46,7 +46,7 @@ index: true
 {%- if last_id != "" -%}
   <div class="table__tr table__tr_2">
     <div class="table__td">
-      <a class="link" href="{{ last_book.url | split: '/' | pop | join: '/' }}">
+      <a class="link" href="{{ last_book.url | split: '/' | pop | join: '/' | relative_url }}">
         {% if last_book.author %}{{ last_book.author }}
         {% else %}{{ last_book.title }}{% endif %}
       </a>

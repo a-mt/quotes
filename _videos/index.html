@@ -14,7 +14,7 @@ index: true
   <div class="table__tbody">
 {% for book in site.videos %}{% unless book.index %}
   <div class="table__tr">
-    <div class="table__td"><a class="link" href="{{ book.url }}">{{ book.title }}</a></div>
+    <div class="table__td"><a class="link" href="{{ book.url | relative_url }}">{{ book.title }}</a></div>
   </div>
 {% endunless %}{% endfor %}
   </div>

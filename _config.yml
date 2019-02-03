@@ -5,7 +5,6 @@ kramdown:
   input: GFM
   hard_wrap: false
 
-# theme: jekyll-theme-primer
 defaults:
   -
     scope:
@@ -27,3 +26,4 @@ collections:
 
 plugins:
   - ./_plugins/jekyll-indexes
+  - jekyll-github-metadata

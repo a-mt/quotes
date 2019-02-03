@@ -28,7 +28,11 @@ index: true
       {%- assign url = last_book.url | split: "/" | shift -%}
       {%- assign n   = url | size -%}
       <div class="table__tr table__tr_3">
-        <div class="table__td"><a class="link" href="{% if n == 3 %}{{ last_book.url }}{% else %}{{ url | pop | join:'/' }}{% endif %}">{{ last_book.title }}</a></div>
+        <div class="table__td">
+          <a class="link" href="{% if n == 3 %}{{ last_book.url | relative_url }}{% else %}{{ url | pop | join:'/' | relative_url }}{% endif %}">
+            {{ last_book.title }}
+          </a>
+        </div>
         <div class="table__td">{{ last_book.author }}</div>
         <div class="table__td">{{ quotes }}</div>
       </div>
@@ -42,7 +46,11 @@ index: true
   {%- assign url = last_book.url | split: "/" | shift -%}
   {%- assign n   = url | size -%}
   <div class="table__tr table__tr_3">
-    <div class="table__td"><a class="link" href="{% if n == 3 %}{{ last_book.url }}{% else %}{{ url | pop | join:'/' }}{% endif %}">{{ last_book.title }}</a></div>
+    <div class="table__td">
+      <a class="link" href="{% if n == 3 %}{{ last_book.url | relative_url }}{% else %}{{ url | pop | join:'/' | relative_url }}{% endif %}">
+        {{ last_book.title }}
+      </a>
+    </div>
     <div class="table__td">{{ last_book.author }}</div>
     <div class="table__td">{{ quotes }}</div>
   </div>

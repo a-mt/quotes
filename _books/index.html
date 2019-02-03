@@ -29,10 +29,10 @@ index: true
         {%- assign url = last_book.url | split: "/" | pop -%}
         <div class="table__tr table__tr_4">
           <div class="table__td">
-            <a class="link" href="{{ url | join: '/'}}">{{ last_book.title }}</a>
+            <a class="link" href="{{ url | join: '/' | relative_url }}">{{ last_book.title }}</a>
            </div>
           <div class="table__td">
-            <a class="link" href="{{ url | pop | join: '/'}}">{{ last_book.author }}</a>
+            <a class="link" href="{{ url | pop | join: '/' | relative_url }}">{{ last_book.author }}</a>
           </div>
           <div class="table__td">{{ last_book.edition }}</div>
           <div class="table__td">{{ quotes }}</div>
@@ -47,10 +47,10 @@ index: true
   {%- assign url = last_book.url | split: "/" | pop -%}
   <div class="table__tr table__tr_4">
     <div class="table__td">
-      <a class="link" href="{{ url | join: '/'}}">{{ last_book.title }}</a>
+      <a class="link" href="{{ url | join: '/' | relative_url }}">{{ last_book.title }}</a>
      </div>
     <div class="table__td">
-      <a class="link" href="{{ url | pop | join: '/'}}">{{ last_book.author }}</a>
+      <a class="link" href="{{ url | pop | join: '/' | relative_url }}">{{ last_book.author }}</a>
     </div>
     <div class="table__td">{{ last_book.edition }}</div>
     <div class="table__td">{{ quotes }}</div>

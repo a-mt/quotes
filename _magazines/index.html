@@ -15,7 +15,7 @@ index: true
   <div class="table__tbody">
 {% for book in site.magazines %}{% unless book.index %}
   <div class="table__tr table__tr_2">
-    <div class="table__td"><a class="link" href="{{ book.url }}">{{ book.title }}</a></div>
+    <div class="table__td"><a class="link" href="{{ book.url | relative_url }}">{{ book.title }}</a></div>
     <div class="table__td">{{ book.edition }}</div>
   </div>
 {% endunless %}{% endfor %}
