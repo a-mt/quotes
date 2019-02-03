@@ -24,3 +24,6 @@ collections:
     output: true
   others:
     output: true
+
+plugins:
+  - ./_plugins/jekyll-indexes
