@@ -1,0 +1,23 @@
+---
+title: Magazines
+index: true
+---
+
+<h1><a href="{{ '/magazines' | relative_url }}">Magazines</a></h1>
+
+<div class="table sortable">
+  <div class="table__thead">
+    <div class="table__tr table__tr_2">
+      <div class="table__th sortable__col">Title</div>
+      <div class="table__th sortable__col is-active sort-asc">Edition</div>
+    </div>
+  </div>
+  <div class="table__tbody">
+{% for book in site.magazines %}{% unless book.index %}
+  <div class="table__tr table__tr_2">
+    <div class="table__td"><a class="link" href="{{ book.url }}">{{ book.title }}</a></div>
+    <div class="table__td">{{ book.edition }}</div>
+  </div>
+{% endunless %}{% endfor %}
+  </div>
+</div>

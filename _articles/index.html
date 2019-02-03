@@ -1,0 +1,51 @@
+---
+title: Articles
+index: true
+---
+
+<h1><a href="{{ '/articles' | relative_url }}">Articles</a></h1>
+
+{%- assign last_id   = "" -%}
+{%- assign last_book = "" -%}
+{%- assign quotes    = 1 -%}
+
+<div class="table sortable">
+  <div class="table__thead">
+    <div class="table__tr table__tr_3">
+      <div class="table__th sortable__col">Title</div>
+      <div class="table__th sortable__col is-active sort-asc">Author</div>
+      <div class="table__th sortable__col numeric">Quotes</div>
+    </div>
+  </div>
+  <div class="table__tbody">
+{% for book in site.articles %}{% unless book.index %}
+  {%- assign id = book.author | append: "/" | append: book.title -%}
+
+  {%- if id == last_id -%}
+    {%- assign quotes = quotes | plus: 1 -%}
+  {%- else -%}
+    {%- if last_id != "" -%}
+      {%- assign url = last_book.url | split: "/" | shift -%}
+      {%- assign n   = url | size -%}
+      <div class="table__tr table__tr_3">
+        <div class="table__td"><a class="link" href="{% if n == 3 %}{{ last_book.url }}{% else %}{{ url | pop | join:'/' }}{% endif %}">{{ last_book.title }}</a></div>
+        <div class="table__td">{{ last_book.author }}</div>
+        <div class="table__td">{{ quotes }}</div>
+      </div>
+    {%- endif -%}
+    {%- assign last_id   = id -%}
+    {%- assign last_book = book -%}
+    {%- assign quotes    = 1 -%}
+  {%- endif -%}
+{% endunless %}{% endfor %}
+{%- if last_id != "" -%}
+  {%- assign url = last_book.url | split: "/" | shift -%}
+  {%- assign n   = url | size -%}
+  <div class="table__tr table__tr_3">
+    <div class="table__td"><a class="link" href="{% if n == 3 %}{{ last_book.url }}{% else %}{{ url | pop | join:'/' }}{% endif %}">{{ last_book.title }}</a></div>
+    <div class="table__td">{{ last_book.author }}</div>
+    <div class="table__td">{{ quotes }}</div>
+  </div>
+{%- endif -%}
+  </div>
+</div>

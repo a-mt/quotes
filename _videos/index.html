@@ -1,0 +1,21 @@
+---
+title: Vidéos
+index: true
+---
+
+<h1><a href="{{ '/videos' | relative_url }}">Vidéos</a></h1>
+
+<div class="table sortable">
+  <div class="table__thead">
+    <div class="table__tr">
+      <div class="table__th sortable__col is-active sort-asc">Title</div>
+    </div>
+  </div>
+  <div class="table__tbody">
+{% for book in site.videos %}{% unless book.index %}
+  <div class="table__tr">
+    <div class="table__td"><a class="link" href="{{ book.url }}">{{ book.title }}</a></div>
+  </div>
+{% endunless %}{% endfor %}
+  </div>
+</div>

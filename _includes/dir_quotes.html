@@ -1,0 +1,47 @@
+{%- comment -%}
+We retrieve the quotes of the author,
+order them per book,
+then show them by calling quotes.html
+{%- endcomment -%}
+
+{%- assign page_path  = page.path | replace: '/index.html','' -%}
+{%- assign trunc      = page_path | size -%}
+
+{%- assign books      = "" | split: "|" -%}
+{%- assign order      = "" | split: "|" -%}
+{%- assign last_id    = "" -%}
+{%- assign index      = 0 -%}
+
+{% capture content %}
+{%- for book in site[include.collection] -%}{%- unless book.index -%}
+  {%- assign start = book.path | slice: 0,trunc -%}
+  {%- if start == page_path -%}
+    {%- assign id     = book.path | slice: trunc,999 | split: '/' | shift | first -%}
+
+    {%- if id != last_id -%}
+      {%- assign order   = order | sort -%}
+      {% include quotes.html %}
+
+      {%- assign books   = "" | split: "|" -%}
+      {%- assign order   = "" | split: "|" -%}
+      {%- assign last_id = id %}
+    {% endif %}
+
+    {%- assign idx       = books | size -%}
+    {%- assign books     = books | push: book -%}
+    {%- assign slug      = book.slug | to_integer -%}
+    {%- assign position  = "" | split: "|" | push: slug | push: idx -%}
+    {%- assign order     = order | push: position -%}
+
+  {%- elsif books != empty -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endunless -%}{%- endfor -%}
+
+{%- assign order = order | sort -%}
+{% include quotes.html %}
+{% endcapture %}
+
+<h1 id="0">{{ page.title }} ({{ index }})</h1>
+
+{{ content }}

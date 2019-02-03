@@ -1,0 +1,20 @@
+{%- comment -%}
+We show the list of quotes following order.
+We use index + 1 to increment the same index between two includes
+{%- endcomment -%}
+
+{% for position in order %}
+  {%- assign idx   = position[1] -%}
+  {%- assign _book = books[idx] -%}
+  {%- assign index = index | plus: 1 -%}
+<article class="quote">
+  <header class="quote__header">
+    <h2 id="{{ forloop.index }}"><a href="{{ _book.url }}">#{{ index }}</a></h2>
+    <small class="quote__info">{{ _book.title }}{% if _book.author %} - {{ _book.author }}{% endif %}{% if _book.edition %} ({{ _book.edition }}){% endif %}</small>
+    {%- if _book.src -%}<a href="{{ _book.src }}" rel="nofollow">Source</a>{%- endif -%}
+    </header>
+  <div class="quote__content">
+    {{ _book.content }}
+  </div>
+</article>
+{% endfor %}

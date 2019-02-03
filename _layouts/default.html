@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
+    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+    <script src="{{ '/assets/sortable-table.js' | relative_url }}"></script>
+  </head>
+  <body>
+    {%- assign parts = page.path | replace: 'index.html','' | replace: '_','' | replace: page.ext,'' | split: "/" -%}
+    {%- assign path  = "" -%}
+    {%- if parts != empty -%}
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__nav">
+          <li class="breadcrumb__item"><a href="{{ '/' | relative_url }}">Home</a></li>
+        {%- for part in parts -%}
+          {%- assign path = path | append: '/' | append: part -%}
+          <li class="breadcrumb__item"><a href="{{ path | relative_url }}">{% if forloop.index == 1 %}{{ part | capitalize }}{% else %}{{ part }}{% endif %}</a></li>
+        {%- endfor -%}
+        </ol>
+      </nav>
+    {%- endif -%}
+    {{ content }}
+  </body>
+</html>

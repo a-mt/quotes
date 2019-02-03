@@ -1,0 +1,16 @@
+---
+title: Homepage
+---
+
+<h1>Home</h1>
+{% assign order = "books, magazines, articles, videos, others" | split: ", " %}
+
+{% for dir in order %}
+    {% assign path = "_" | append: dir | append: "/index.html" %}
+
+    {% capture index %}{% include_relative {{path}} %}{% endcapture %}
+    {{ index | split: "---" | last | replace: '<h1','<h2' }}
+    {% comment %}"split | last" removes the front matter (metadatas delimited by ---){% endcomment %}
+
+    {% unless forloop.last %}<hr>{% endunless %}
+{% endfor %}
