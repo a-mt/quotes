@@ -21,7 +21,7 @@
         </ol>
       </nav>
     {%- endif -%}
-    <main>{{ content }}</main>
+    <main>{% if page.author or page.edition %}{% include quote.html %}{% else %}{{ content }}{% endif %}</main>
 
     <footer>
     {% if site.github.private != true and site.github.license %}
